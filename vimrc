@@ -102,3 +102,17 @@ let g:NERDTreeIndicatorMapCustom = {
     \ 'Ignored'   : '☒',
     \ "Unknown"   : "?"
     \ }
+"     _    _      _ _            
+"    / \  (_)_ __| (_)_ __   ___ 
+"   / _ \ | | '__| | | '_ \ / _ \
+"  / ___ \| | |  | | | | | |  __/
+" /_/   \_\_|_|  |_|_|_| |_|\___|
+let g:airline_powerline_fonts = 1
+let g:airline_theme='badwolf'
+set laststatus=2
+if has("autocmd")
+  augroup ft_statusline_background_colour
+    au InsertEnter * hi StatusLine ctermfg=15 guifg=#FF3145
+    au InsertLeave * hi StatusLine ctermfg=236 guifg=#CD5907
+  augroup END
+endif
