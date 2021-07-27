@@ -23,10 +23,9 @@ Just run the following commands via terminal to get perfectly set up:
 
 ```console
 $ cd ~/
-$ git clone --recursive https://github.com/denhamparry/.vim.git .vim
+$ git clone https://github.com/denhamparry/.vim.git .vim
 $ ln -sf $HOME/.vim/vimrc $HOME/.vimrc
 $ cd $HOME/.vim
-$ git submodule update --init
 ```
 
 ## Makefile
@@ -36,10 +35,15 @@ You can use the [`Makefile`](Makefile) to run a series of commands.
 ```console
 $ make help
 install                        Sets up symlink for user and root .vimrc for vim and neovim.
-			       Install Vundle
-update-vundle		       Clean and install plugins
-
+update-vim-plug		       Clean and install plugins
 ```
+
+## Plugs
+
+- [Vim Plug](https://github.com/junegunn/vim-plug)
+- [FZF](https://github.com/junegunn/fzf.vim)
+- [NERDTree](htttps://github.com/scrooloose/nerdtree)
+- [NerdTreeGitStatus](https://github.com/Xuyuanp/nerdtree-git-plugin)
 
 ## Notes
 
