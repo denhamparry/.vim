@@ -6,6 +6,7 @@ Plug 'preservim/nerdtree'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 colorscheme dracula
