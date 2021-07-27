@@ -45,6 +45,7 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 
 " NERDTree
 let NERDTreeShowHidden=1
+let NERDTreeMinimalUI = 1
 
 " NERDTree Git Plugin
 " let g:NERDTreeGitStatusIndicatorMapCustom = {
