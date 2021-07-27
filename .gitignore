@@ -1,4 +1,3 @@
-bundle
-init.vim
-*.swp
-.netrwhist
+autoload
+plugged
+undodir

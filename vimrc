@@ -1,118 +1,66 @@
 set nocompatible              " required
 filetype off                  " required
 
-let g:python_host_prog = '/usr/bin/python3'
+call plug#begin('~/.vim/plugged')
+Plug 'preservim/nerdtree'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'tpope/vim-fugitive'
+Plug 'vim-airline/vim-airline'
+Plug 'airblade/vim-gitgutter'
+call plug#end()
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'benmills/vimux'
-Plugin 'preservim/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'tpope/vim-fugitive'
-Plugin 'iamcco/markdown-preview.nvim'
-Plugin 'morhetz/gruvbox'
-Plugin 'prabirshrestha/async.vim'
-Plugin 'prabirshrestha/vim-lsp'
-Plugin 'dracula/vim', { 'name': 'dracula' }
-call vundle#end()                                                         " required
+syntax on
 
 colorscheme dracula
-filetype plugin indent on                                                 " required
-
-if has('mouse')
-  if &term =~ 'xterm'
-    set mouse=a
-  else
-    set mouse=nvi
-  endif
-endif
 
 set backspace=2                                                           " Make backspace work for indent, eol, start
 set noerrorbells                                                          " No beeps
-set history=1000	                                                        " keep 1000 lines of command line history
-set ruler		                                                              " show the cursor position all the time
+set history=1000	                                                  " keep 1000 lines of command line history
+set ruler		                                                  " show the cursor position all the time
 set incsearch                                                             " Incomplete search matches
 set hlsearch                                                              " Keep search highlight after complete
-set number		                                                            " Show current line number
+set number		                                                  " Show current line number
 set relativenumber                                                        " Show line numbers
 set showmode                                                              " Show the current mode in the last line
 set showcmd                                                               " Show the current command in the last line
 set showmatch                                                             " Highlight matching brackets
 set wildmenu                                                              " Improve tab completion menu
-set wildmenu		                                                          " display completion matches in a status line
+set wildmenu		                                                  " display completion matches in a status line
 set encoding=utf-8                                                        " Default to UTF-8
-set scrolloff=2		                                                        " start scrolling 2 lines from the screen edge
-syntax on                                                                 " Enable syntax highlighting
-"  __  __            _       _                     
-" |  \/  | __ _ _ __| | ____| | _____      ___ __  
-" | |\/| |/ _` | '__| |/ / _` |/ _ \ \ /\ / / '_ \ 
-" | |  | | (_| | |  |   < (_| | (_) \ V  V /| | | |
-" |_|  |_|\__,_|_|  |_|\_\__,_|\___/ \_/\_/ |_| |_|
-"                                                  
-"  ____                 _               
-" |  _ \ _ __ _____   _(_) _____      __
-" | |_) | '__/ _ \ \ / / |/ _ \ \ /\ / /
-" |  __/| | |  __/\ V /| |  __/\ V  V / 
-" |_|   |_|  \___| \_/ |_|\___| \_/\_/  
-let g:mkdp_auto_start = 1
-let g:mkdp_auto_close = 1
-
+set scrolloff=10		                                          " Start scrolling 10 lines from the screen edge
+set nowrap								  " Don't wrap lines
+set smartcase								  " Search with case sensitive
+set noswapfile								  " Don't create swap files
+set nobackup
+set undodir=~/.vim/undodir
+set undofile
+set incsearch
 set exrc
 set secure
-" __     ___                      
-" \ \   / (_)_ __ ___  _   ___  __
-"  \ \ / /| | '_ ` _ \| | | \ \/ /
-"   \ V / | | | | | | | |_| |>  < 
-"    \_/  |_|_| |_| |_|\__,_/_/\_\
-map <Leader>vp :VimuxPromptCommand<CR>
-map <Leader>vl :VimuxRunLastCommand<CR>
-map <Leader>vi :VimuxInspectRunner<CR>
-map <Leader>vc :VimuxCloseRunner<CR>
-map <Leader>vz :VimuxZoomRunner<CR>
-"  _   _ _____ ____  ____ _____              
-" | \ | | ____|  _ \|  _ \_   _| __ ___  ___ 
-" |  \| |  _| | |_) | | | || || '__/ _ \/ _ \
-" | |\  | |___|  _ <| |_| || || | |  __/  __/
-" |_| \_|_____|_| \_\____/ |_||_|  \___|\___|
-let NERDTreeIgnore = ['\~$']
+
+" Open NERDTree when starting vim
+autocmd VimEnter * NERDTree
+" Close vim if no file tabs are open
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+" NERDTree
+let NERDTreeShowHidden=1
 let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-let NERDTreeShowHidden = 1
-set wildignore+=*.pyc,*.o,*.obj,*.svn,*.swp,*.class,*.hg,*.DS_Store,*.min.*
-let NERDTreeRespectWildIgnore=1
-"  _   _ _____ ____  ____ _____                      _ _   
-" | \ | | ____|  _ \|  _ \_   _| __ ___  ___    __ _(_) |_ 
-" |  \| |  _| | |_) | | | || || '__/ _ \/ _ \  / _` | | __|
-" | |\  | |___|  _ <| |_| || || | |  __/  __/ | (_| | | |_ 
-" |_| \_|_____|_| \_\____/ |_||_|  \___|\___|  \__, |_|\__|
-"                                              |___/       
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ 'Ignored'   : '☒',
-    \ "Unknown"   : "?"
-    \ }
-"     _    _      _ _            
-"    / \  (_)_ __| (_)_ __   ___ 
-"   / _ \ | | '__| | | '_ \ / _ \
-"  / ___ \| | |  | | | | | |  __/
-" /_/   \_\_|_|  |_|_|_| |_|\___|
-let g:airline_powerline_fonts = 1
-let g:airline_theme='badwolf'
-set laststatus=2
-if has("autocmd")
-  augroup ft_statusline_background_colour
-    au InsertEnter * hi StatusLine ctermfg=15 guifg=#FF3145
-    au InsertLeave * hi StatusLine ctermfg=236 guifg=#CD5907
-  augroup END
-endif
+
+" NERDTree Git Plugin
+let g:NERDTreeGitStatusUseNerdFonts = 1
+
+" Airline
+let g:airline_theme='dracula'
+
+" GitGutter
+let g:gitgutter_set_sign_backgrounds = 1
+highlight clear SignColumn
+
+" Set navigation in vim
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
