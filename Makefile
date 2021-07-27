@@ -11,12 +11,11 @@ install: ## Sets up symlink for user and root .vimrc for vim and neovim.
 	sudo mkdir -p /root/.config
 	sudo ln -snf "$(HOME)/.vim" /root/.config/nvim
 	sudo ln -snf "$(HOME)/.vimrc" /root/.config/nvim/init.vim
-	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
-.PHONY: install-vundle
-update-vundle: ## Updates vundle.
-	vim +PluginClean +qall
-	vim +PluginInstall +qall
+.PHONY: install-vim-plug
+install-vim-plug: ## Installs Vim Plug vi script
+	curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 .PHONY: help
 help:
