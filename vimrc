@@ -2,7 +2,9 @@ set nocompatible              " required
 filetype off                  " required
 
 call plug#begin('~/.vim/plugged')
+Plug 'preservim/nerdtree'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'Xuyuanp/nerdtree-git-plugin'
 call plug#end()
 
 set backspace=2                                                           " Make backspace work for indent, eol, start
@@ -33,9 +35,27 @@ set secure
 syntax on                                                                 " Enable syntax highlighting
 
 " Open NERDTree when starting vim
-" autocmd VimEnter * NERDTree
+autocmd VimEnter * NERDTree
 " Close vim if no file tabs are open
-" autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+" NERDTree
+let NERDTreeShowHidden=1
+
+" NERDTree Git Plugin
+" let g:NERDTreeGitStatusIndicatorMapCustom = {
+"                \ 'Modified'  :'✹',
+"                \ 'Staged'    :'✚',
+"                \ 'Untracked' :'✭',
+"                \ 'Renamed'   :'➜',
+"                \ 'Unmerged'  :'═',
+"                \ 'Deleted'   :'✖',
+"                \ 'Dirty'     :'✗',
+"                \ 'Ignored'   :'☒',
+"                \ 'Clean'     :'✔︎',
+"                \ 'Unknown'   :'?',
+"                \ }
+let g:NERDTreeGitStatusUseNerdFonts = 1
 
 " Set navigation in vim
 map <C-h> <C-w>h
