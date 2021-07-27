@@ -47,6 +47,10 @@ update-vim-plug		       Clean and install plugins
 - [Dracula Theme](https://draculatheme.com/vim)
 - [Vim Fugitive](https://github.com/tpope/vim-fugitive)
 
+### TODO
+
+- [Markdown Preview](https://github.com/iamcco/markdown-preview.nvim)
+
 ## Notes
 
 ### Open
