@@ -7,7 +7,11 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'tpope/vim-fugitive'
+Plug 'vim-airline/vim-airline'
+Plug 'airblade/vim-gitgutter'
 call plug#end()
+
+syntax on
 
 colorscheme dracula
 
@@ -36,8 +40,6 @@ set incsearch
 set exrc
 set secure
 
-syntax on                                                                 " Enable syntax highlighting
-
 " Open NERDTree when starting vim
 autocmd VimEnter * NERDTree
 " Close vim if no file tabs are open
@@ -48,19 +50,14 @@ let NERDTreeShowHidden=1
 let NERDTreeMinimalUI = 1
 
 " NERDTree Git Plugin
-" let g:NERDTreeGitStatusIndicatorMapCustom = {
-"                \ 'Modified'  :'✹',
-"                \ 'Staged'    :'✚',
-"                \ 'Untracked' :'✭',
-"                \ 'Renamed'   :'➜',
-"                \ 'Unmerged'  :'═',
-"                \ 'Deleted'   :'✖',
-"                \ 'Dirty'     :'✗',
-"                \ 'Ignored'   :'☒',
-"                \ 'Clean'     :'✔︎',
-"                \ 'Unknown'   :'?',
-"                \ }
 let g:NERDTreeGitStatusUseNerdFonts = 1
+
+" Airline
+let g:airline_theme='dracula'
+
+" GitGutter
+let g:gitgutter_set_sign_backgrounds = 1
+highlight clear SignColumn
 
 " Set navigation in vim
 map <C-h> <C-w>h

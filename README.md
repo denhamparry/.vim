@@ -1,4 +1,5 @@
 .vim
+autoload
 ====
 
 My vim dot files. the `.vimrc` file is saved to [vimrc](https://github.com/denhamparry/.vim/blob/master/vimrc).
@@ -10,6 +11,7 @@ My vim dot files. the `.vimrc` file is saved to [vimrc](https://github.com/denha
 - [About](#about)
   * [Installing](#installing)
 - [Makefile](#makefile)
+- [Plugs](#plugs)
 - [Notes](#notes)
 - [References](#references)
 
@@ -46,6 +48,8 @@ update-vim-plug		       Clean and install plugins
 - [NerdTreeGitStatus](https://github.com/Xuyuanp/nerdtree-git-plugin)
 - [Dracula Theme](https://draculatheme.com/vim)
 - [Vim Fugitive](https://github.com/tpope/vim-fugitive)
+- [Airline](https://github.com/vim-airline/vim-airline)
+- [Git Gutter](https://github.com/vim-gitgutter)
 
 ### TODO
 
