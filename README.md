@@ -44,6 +44,7 @@ update-vim-plug		       Clean and install plugins
 - [FZF](https://github.com/junegunn/fzf.vim)
 - [NERDTree](htttps://github.com/scrooloose/nerdtree)
 - [NerdTreeGitStatus](https://github.com/Xuyuanp/nerdtree-git-plugin)
+- [Dracula Theme](https://draculatheme.com/vim)
 
 ## Notes
 
