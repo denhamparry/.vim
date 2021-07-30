@@ -9,6 +9,8 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'airblade/vim-gitgutter'
+Plug 'jremmen/vim-ripgrep'
+Plug 'vim-utils/vim-man'
 call plug#end()
 
 syntax on
@@ -40,8 +42,8 @@ set incsearch
 set exrc
 set secure
 
-" Open NERDTree when starting vim
-autocmd VimEnter * NERDTree
+" Open NERDTree when starting vim (unless being used for git commit)
+autocmd VimEnter * if &filetype !=# 'gitcommit' | NERDTree | endif
 " Close vim if no file tabs are open
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
